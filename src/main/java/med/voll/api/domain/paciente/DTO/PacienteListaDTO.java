@@ -1,8 +1,10 @@
-package med.voll.api.domain.paciente;
+package med.voll.api.domain.paciente.DTO;
 
-public record PacienteListaDTO(String nome, String email, String cpf) {
+import med.voll.api.domain.paciente.Paciente;
+
+public record PacienteListaDTO(String nome, String email, String cpf, Boolean ativo) {
     public PacienteListaDTO(Paciente paciente){
-        this(paciente.getNome(), paciente.getEmail(), paciente.getCpf());
+        this(paciente.getNome(), paciente.getEmail(), paciente.getCpf(), paciente.getAtivo());
 
     }
 }

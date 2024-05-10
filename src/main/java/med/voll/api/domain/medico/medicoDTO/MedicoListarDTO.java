@@ -9,10 +9,11 @@ public record MedicoListarDTO (
         String nome,
         String email,
         String crm,
-        Especialidade especialidade
+        Especialidade especialidade,
+        Boolean ativo
 ){
     public MedicoListarDTO(Medico medico){
-        this(medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
+        this(medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade(), medico.getAtivo());
 
     }
 

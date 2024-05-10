@@ -34,7 +34,7 @@ public class MedicoService {
     }
 
     public void deletar(Long id) {
-        repository.findById(id).ifPresentOrElse((medicoExistente) -> repository.delete(medicoExistente),() ->{
+        repository.findById(id).ifPresentOrElse((medicoExistente) -> medicoExistente.excluir(),() ->{
             throw new BadRequestException("Medico com id %d nao existe!".formatted(id));
         });
     }

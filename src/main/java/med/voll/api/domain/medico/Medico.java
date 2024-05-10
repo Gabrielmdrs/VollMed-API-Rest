@@ -1,10 +1,7 @@
 package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.medico.medicoDTO.MedicoAtualizarDTO;
 import med.voll.api.domain.medico.medicoDTO.MedicoDTO;
@@ -12,6 +9,7 @@ import med.voll.api.domain.medico.medicoDTO.MedicoDTO;
 @Entity(name = "Medico")
 @Table(name = "Medicos")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
