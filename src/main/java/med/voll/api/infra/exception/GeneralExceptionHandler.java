@@ -29,6 +29,12 @@ public class GeneralExceptionHandler {
         return ResponseEntity.badRequest().body(erros.stream().map(fieldError -> new DadosErroValidacao(fieldError)).toList());
     }
 
+    @ExceptionHandler(ValidacaoException.class)
+    private ResponseEntity validacao(ValidacaoException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(exception.getMessage());
+    }
+
     private record DadosErroValidacao(String campo, String mensagem){
         public DadosErroValidacao(FieldError error){
             this(error.getField(), error.getDefaultMessage());

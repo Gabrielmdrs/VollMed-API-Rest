@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.paciente.DTO.PacienteAtualizaDTO;
 import med.voll.api.domain.paciente.DTO.PacienteCadastroDTO;
-import org.hibernate.annotations.processing.SQL;
 
 @Entity(name = "Paciente")
 @Table(name = "pacientes")

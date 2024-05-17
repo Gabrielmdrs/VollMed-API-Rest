@@ -1,26 +1,33 @@
 package med.voll.api.controller;
 
-import med.voll.api.domain.consulta.DadosAgendamento;
-import med.voll.api.domain.consulta.detalhamentoConsulta;
-import med.voll.api.domain.medico.medicoDTO.MedicoListarDTO;
-import med.voll.api.domain.paciente.DTO.PacienteListaDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import med.voll.api.domain.consulta.*;
+import med.voll.api.domain.consulta.DTO.DadosAgendamento;
+import med.voll.api.domain.consulta.DTO.DadosCancelamento;
+import med.voll.api.domain.consulta.DTO.DetalhamentoConsulta;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
-    @PostMapping
-    public ResponseEntity agendarConsulta(@RequestBody DadosAgendamento dados, UriComponentsBuilder uriBuilder){
+    @Autowired
+    private AgendamentoService agenda;
 
-        return ResponseEntity.ok(new detalhamentoConsulta(null, dados.idMedico(), dados.idPaciente(), dados.data()));
+    @PostMapping
+    public ResponseEntity agendarConsulta(@RequestBody DadosAgendamento dados){
+        var consultaAgendada = agenda.agendarConsulta(dados);
+        return ResponseEntity.ok(consultaAgendada);
+    }
+
+    @DeleteMapping
+    public ResponseEntity deletarConsulta(@RequestBody DadosCancelamento dados){
+        agenda.cancelar(dados);
+        return ResponseEntity.ok().build();
     }
 
 

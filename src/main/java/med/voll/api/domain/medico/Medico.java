@@ -48,6 +48,7 @@ public class Medico {
 
     }
 
+
     public void atualizarDados(MedicoAtualizarDTO dados) {
         if (dados.nome() != null){
             this.nome = dados.nome();
